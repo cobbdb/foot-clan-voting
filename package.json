@@ -15,7 +15,9 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "reactstrap": "^8.0.1",
-    "redux-persist": "^5.10.0"
+    "redux": "^4.0.4",
+    "redux-persist": "^5.10.0",
+    "websocket": "^1.0.29"
   },
   "scripts": {
     "start": "react-scripts start",
