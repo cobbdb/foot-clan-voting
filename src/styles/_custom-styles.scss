@@ -1,1 +1,40 @@
+@import './custom/class-sprites';
+@import './custom/faction-sprites';
+@import './custom/roles-sprites';
+@import './custom/realm-sprites';
+@import './custom/pvp-sprites';
+@import './custom/raid-sprites';
 
+.random-bg-color {
+  background-color: rgb(random(255), random(255), random(255));
+}
+
+#header {
+  z-index: 100000;
+  $height: 5rem;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: $height;
+  
+  &+ div {
+    padding-top: $height;
+    min-height: 100vh;
+    
+    &> div {
+      width: 50rem;
+    }
+  }
+}
+
+.option {
+  border-radius: 0;
+  border: 1px solid $dark;
+  background-color: $light;
+  
+  &.active {
+    border-color: $warning !important;
+    color: $warning !important;
+  }
+}

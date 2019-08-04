@@ -1,4 +1,7 @@
 import { w3cwebsocket } from 'websocket';
+import { store } from './store';
+
+export let socket = false;
 
 export const connect = () => {
   const client = new w3cwebsocket('ws://www.dcobb.media:8080/', 'echo-protocol');
@@ -10,20 +13,25 @@ export const connect = () => {
   client.onopen = () => {
     console.log('WebSocket Client Connected');
     if (client.readyState === client.OPEN) {
-      const number = Math.round(Math.random() * 0xFFFFFF);
-      client.send(number.toString());
+      store.dispatch({ type: 'SOCKET_OPEN' });
     }
   };
 
-  client.onclose = () => {
+  client.onclose = (event) => {
     console.log('echo-protocol Client Closed');
+    store.dispatch({ type: 'SOCKET_ERROR', code: event.code });
   };
 
   client.onmessage = ({ data }) => {
     if (typeof data === 'string') {
-      console.log(`Received: '${data}'`);
+      const toons = JSON.parse(data);
+      console.log(`Received: ${toons}`);
+      toons.forEach((toon) => {
+        store.dispatch({ type: 'LOAD_TOON', toon });
+      });
     }
   };
 
+  socket = client;
   return client;
 };

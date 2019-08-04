@@ -1,0 +1,28 @@
+.classes-icon {
+  $scale: 0.4;
+  $width: 160px * $scale;
+  $height: 167px * $scale;
+
+  background-size: 400%;
+  background-image: url('../static/class-icons.png');
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+
+  @mixin position($X, $Y) {
+    $posX: $X * $width;
+    $posY: $Y * $height;
+    background-position-x: -$posX;
+    background-position-y: -$posY;
+  }
+
+  &.warrior { @include position(0, 0) }
+  &.paladin { @include position(1, 0) }
+  &.hunter { @include position(2, 0) }
+  &.rogue { @include position(3, 0) }
+  &.shaman { @include position(1, 1) }
+  &.mage { @include position(2, 1) }
+  &.warlock { @include position(3, 1) }
+  &.druid { @include position(1, 2) }
+  &.priest { @include position(3, 2) }
+}

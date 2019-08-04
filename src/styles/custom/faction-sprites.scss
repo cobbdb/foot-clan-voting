@@ -1,0 +1,22 @@
+.factions-icon {
+  $scale: 0.2;
+  $width: 254px * $scale;
+  $height: 254px * $scale;
+
+  background-size: 200%;
+  background-image: url('../static/faction-icons.png');
+  background-repeat: no-repeat;
+  width: $width;
+  height: $height;
+
+  @mixin position($X, $Y) {
+    $posX: $X * $width;
+    $posY: $Y * $height;
+    background-position-x: -$posX;
+    background-position-y: -$posY;
+  }
+
+  &.horde { @include position(0, 0) }
+  &.alliance { @include position(1, 0) }
+  &.nope { @include position(2, 0) }
+}
